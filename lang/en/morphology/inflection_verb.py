@@ -28,8 +28,8 @@ class InflectionVerb(object):
     if baseToken == "be":
       return "is"
     elif re.search(".*([szx]|(ch)|(sh))$", baseToken):
-      return "{}{}".format(baseToken, "es")
+      return baseToken + "es"
     elif baseToken.endswith("y"):
-      return "{}{}".format(baseToken[:-1], "ies")
+      return baseToken[:-1] + "ies"
     else:
-      return "{}{}".format(baseToken, "s")
+      return baseToken + "s"

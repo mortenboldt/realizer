@@ -27,11 +27,11 @@ class InflectionNoun(object):
       return ""
 
     if re.search(".*[^eiou]y\\Z", baseToken):
-      return "{}{}".format(baseToken[:-1], "ies")
+      return baseToken[:-1] + "ies"
     elif re.search(".*([szx]|(ch)|(sh))$", baseToken):
-      return "{}{}".format(baseToken, "es")
+      return baseToken + "es"
     else:
-      return "{}{}".format(baseToken, "s")
+      return baseToken + "s"
 
 
 
@@ -76,20 +76,20 @@ class InflectionNoun(object):
       return ""
     
     if baseToken.endswith("us"):
-      return "{}{}".format(baseToken[:-2], "i")
+      return baseToken[:-2] + "i"
     elif baseToken.endswith("ma"):
-      return "{}{}".format(baseToken, "ta")
+      return baseToken + "ta"
     elif baseToken.endswith("a"):
-      return "{}{}".format(baseToken[:-1], "ae")
+      return baseToken[:-1] + "ae"
     elif baseToken.endswith(("on", "um")):
-      return "{}{}".format(baseToken[:-2], "a")
+      return baseToken[:-2] + "a"
     elif baseToken.endswith("sis"):
-      return "{}{}".format(baseToken[:-3], "ses")
+      return baseToken[:-3] + "ses"
     elif baseToken.endswith("is"):
-      return "{}{}".format(baseToken[:-2], "ides")
+      return baseToken[:-2] + "ides"
     elif baseToken.endswith("men"):
-      return "{}{}".format(baseToken[:-3], "mina")
+      return baseToken[:-3] + "mina"
     elif baseToken.endswith("ex"):
-      return "{}{}".format(baseToken[:-2], "ices")
+      return baseToken[:-2] + "ices"
     elif baseToken.endswith("x"):
-      return "{}{}".format(baseToken[:-1], "ces")
+      return baseToken[:-1] + "ces"
