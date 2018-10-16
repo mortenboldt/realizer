@@ -12,6 +12,19 @@ class DeterminerHelper(object):
     VOWELS = ['a', 'e', 'i', 'o', 'u']  # y is traditionally not counted as a vowel in English
 
     @classmethod
+    def check_ends_with_indefinite_article(cls, input_text, np):
+        """
+        Check to see if a string ends with the indefinite article "a" and it agrees with np.
+        """
+        last_char = input_text.lower()[-1]
+        if last_char == "a" and cls.requires_an(np):
+            return input_text + "n"
+        elif last_char == "n" and not cls.requires_an(np):
+            return input_text[:-1]
+
+        return input_text
+
+    @classmethod
     def requires_an(cls, term):
         requires_an = False
 
