@@ -14,7 +14,7 @@ def test_with_empty_basetoken(inf):
 
 
 def test_with_regular_noun_ending_in_consonant_y(inf):
-    """-Cy**, where C is any consonant"""
+    """-Cy, where C is any consonant"""
     assert "flies" == inf.regular_plural_noun("fly")
     assert "authorities" == inf.regular_plural_noun("authority")
     assert "bodies" == inf.regular_plural_noun("body")
