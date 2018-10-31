@@ -1,8 +1,13 @@
 # coding: utf8
-import re
+"""
+This module helps find the determiner for a given word
+
+For instance "a horse", instead of "an horse", when given the word "horse"
+It also works on numbers.
+"""
 
 
-class DeterminerHelper(object):
+class DeterminerHelper:
     """
     Rules for determining whether the determiner for a word should be a or an
     """
@@ -12,20 +17,27 @@ class DeterminerHelper(object):
     VOWELS = ['a', 'e', 'i', 'o', 'u']  # y is traditionally not counted as a vowel in English
 
     @classmethod
-    def check_ends_with_indefinite_article(cls, input_text, np):
+    def check_ends_with_indefinite_article(cls, input_text, noun_phrase):
         """
-        Check to see if a string ends with the indefinite article "a" and it agrees with np.
+        Check to see if a string ends with the indefinite article "a"
+        and it agrees with noun_phrase.
         """
         last_char = input_text.lower()[-1]
-        if last_char == "a" and cls.requires_an(np):
-            return input_text + "n"
-        elif last_char == "n" and not cls.requires_an(np):
-            return input_text[:-1]
+        output_text = input_text
+        if last_char == "a" and cls.requires_an(noun_phrase):
+            output_text = input_text + "n"
+        elif last_char == "n" and not cls.requires_an(noun_phrase):
+            output_text = input_text[:-1]
 
-        return input_text
+        return output_text
 
     @classmethod
     def requires_an(cls, term):
+        """
+        Is is required for the term to be prefixed by "an"?
+        :param term:
+        :return: bool
+        """
         requires_an = False
 
         term_lower = term.lower()
@@ -33,7 +45,7 @@ class DeterminerHelper(object):
             requires_an = True
         else:
             numeric_prefix = cls._get_numeric_prefix(term_lower)
-            if numeric_prefix is not None and re.search(r'^(8|11|18).*', numeric_prefix):
+            if numeric_prefix is not None and numeric_prefix.startswith(("8", "11", "18")):
                 requires_an = cls._check_number(int(numeric_prefix))
 
         return requires_an
@@ -48,7 +60,7 @@ class DeterminerHelper(object):
 
         if term is not None:
             stripped_term = term.strip()
-            if len(stripped_term) > 0:
+            if stripped_term:
                 for char in stripped_term:
                     if char.isdigit():
                         numeric += char
@@ -57,7 +69,7 @@ class DeterminerHelper(object):
                     else:
                         break
 
-        return str(numeric) if len(numeric) > 0 else None
+        return str(numeric) if numeric else None
 
     @classmethod
     def _check_number(cls, number):
