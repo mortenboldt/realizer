@@ -1,9 +1,15 @@
 # coding: utf8
+"""
+Rules for doing inflection on verbs
+
+"""
+
+
 import re
 
 
-class InflectionVerb(object):
-    """ Rules for doing inflection on verbs"""
+class InflectionVerb:
+    """Rules for doing inflection on verbs"""
 
     @staticmethod
     def regular_third_person_singular_verb(base_token=None):
@@ -23,14 +29,16 @@ class InflectionVerb(object):
         :return string pluralized verb:
         """
 
-        if base_token is None:
-            return ""
+        output_string = ""
 
-        if base_token == "be":
-            return "is"
-        elif re.search(".*([szx]|(ch)|(sh))$", base_token):
-            return base_token + "es"
-        elif base_token.endswith("y"):
-            return base_token[:-1] + "ies"
-        else:
-            return base_token + "s"
+        if base_token is not None:
+            if base_token == "be":
+                output_string = "is"
+            elif re.search(r".*([szx]|(ch)|(sh))$", base_token):
+                output_string = base_token + "es"
+            elif base_token.endswith("y"):
+                output_string = base_token[:-1] + "ies"
+            else:
+                output_string = base_token + "s"
+
+        return output_string
