@@ -28,3 +28,6 @@ def test_with_verb_ending_in_y(inf):
 def test_with_verb_others(inf):
     assert "works" == inf.regular_third_person_singular_verb("work")
     assert "requires" == inf.regular_third_person_singular_verb("require")
+
+def test_with_no_token(inf):
+    assert "" == inf.regular_third_person_singular_verb(None)

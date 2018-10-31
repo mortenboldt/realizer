@@ -33,7 +33,7 @@ class DeterminerHelper(object):
             requires_an = True
         else:
             numeric_prefix = cls._get_numeric_prefix(term_lower)
-            if numeric_prefix is not None and re.search("^(8|11|18).*$", numeric_prefix):
+            if numeric_prefix is not None and re.search(r'^(8|11|18).*', numeric_prefix):
                 requires_an = cls._check_number(int(numeric_prefix))
 
         return requires_an
