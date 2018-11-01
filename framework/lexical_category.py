@@ -1,8 +1,8 @@
 from enum import Enum, unique
-
+from framework.element_category import ElementCategory
 
 @unique
-class LexicalCategory(Enum):
+class LexicalCategory(Enum, ElementCategory):
 
     # A default value =  indicating an unspecified category.
     ANY = 1

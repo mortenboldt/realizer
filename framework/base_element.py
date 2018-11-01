@@ -4,8 +4,9 @@ NLGElement.java
 """
 
 import abc
-from framework.element_category import ElementCategory
 from features.number_agreement import NumberAgreement
+from features.feature import Feature
+from framework.element_category import ElementCategory
 
 
 class BaseElement:
@@ -187,18 +188,38 @@ class BaseElement:
 
         print(out, end="")
 
-
-    def set_plural(self, isPlural):
-        # TOOD: Implement features.feature
-        if isPlural:
-            #self.set_feature(Feature.NUMBER, NumberAgreement.PLURAL)
-            pass
+    def set_plural(self, is_plural):
+        """
+        Sets the number agreement on this element. This method is added for
+        convenience and not all element types will make use of the number
+        agreement feature.
+        :param is_plural: bool
+        :return: void
+        """
+        if is_plural:
+            self.set_feature(Feature.NUMBER, NumberAgreement.PLURAL)
         else:
-            #self.set_feature(Feature.NUMBER, NumberAgreement.SINGULAR)
-            pass
+            self.set_feature(Feature.NUMBER, NumberAgreement.SINGULAR)
 
+    def is_plural(self):
+        """
+        Determines if this element is to be treated as a plural. This is a
+        convenience method and not all element types make use of number agreement.
+        :return: bool
+        """
+        return NumberAgreement.PLURAL == self.features[Feature.NUMBER]
 
+    @property
+    def factory(self):
+        """
+        return the factory that build this element
+        :return: Factory
+        """
+        return self._factory
+
+    @factory.setter
+    def factory(self, factory):
+        self._factory = factory
 
     # TODO: Implement a tostring method
     # TOdO: Implement an equality check method: Equals
-
