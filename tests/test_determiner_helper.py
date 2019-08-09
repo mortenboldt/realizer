@@ -52,16 +52,19 @@ def test_requires_an_numeric(helper):
 def test_check_ends_with_indefinite_articles1(helper):
     input_text = "I see a"
     np = "elephant"
-    assert "I see an" == helper.check_ends_with_indefinite_article(input_text, np)
+    result = helper.check_ends_with_indefinite_article(input_text, np)
+    assert "I see an" == result
 
 
 def test_check_ends_with_indefinite_articles2(helper):
     input_text = "I see a"
     np = "cow"
-    assert "I see a" == helper.check_ends_with_indefinite_article(input_text, np)
+    result = helper.check_ends_with_indefinite_article(input_text, np)
+    assert "I see a" == result
 
 
 def test_check_ends_with_indefinite_articles3(helper):
     input_text = "I see an"
     np = "cow"
-    assert "I see a" == helper.check_ends_with_indefinite_article(input_text, np)
+    result = helper.check_ends_with_indefinite_article(input_text, np)
+    assert "I see a" == result

@@ -3,6 +3,6 @@ Links:
 - https://www.ef.com/english-resources/english-grammar/
 - http://www.websitestyle.com/parser/adverbs.shtml
 - https://www.english-grammar-revolution.com/english-grammar-exercise.html
-
+- https://drive.google.com/file/d/0B2f6gfN3R0ABM0tTVkxyNWUwVnM/view
 
 
